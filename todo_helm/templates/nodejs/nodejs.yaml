@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todo  # Chart.yaml: The 'name' scalar.
+  name: todo # Name of the local Helm release.
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo
+  template:
+    metadata:
+      labels:
+        app: todo
+    spec:
+      containers:
+        # Parses into something like: junktext/getting-started:1.0.4
+      - image: {{ .Values.image.repository }}
+        # We only have 1 container in each Pod, so we can just a simple name.
+        name: {{ .Chart.Name }}
+        ports:
+          - containerPort: {{ .Values.service.port }}
+        env:
+        - name: MYSQL_HOST 
+          value: mysql
+        - name: MYSQL_USER
+          valueFrom: 
+            secretKeyRef: 
+              name: mysql-secret
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom: 
+            secretKeyRef: 
+              name: mysql-secret
+              key: password
+        - name: MYSQL_DB
+          valueFrom:
+            secretKeyRef: 
+              name: mysql-secret
+              key: mysql_db
+
+
+
+
+
+    

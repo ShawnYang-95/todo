@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  vars:
+    app_name: todo
+    app_port: 3000
+    compose_file: ./docker-compose.yaml
+  tasks:
+    - name: Start Docker Compose
+      command: docker-compose up -d
+      args:
+        chdir: "./app"
