@@ -9,6 +9,6 @@ spec:
   ports:
     - port: 3000
       targetPort: 3000
-      nodePort: 30920
+      nodePort: 31233
   selector:
     app: todo
