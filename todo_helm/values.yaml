@@ -27,7 +27,7 @@ backend:
   replicaCount: 1
   image:
     repository: mysql
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
     tag: "8.0"
   service:
