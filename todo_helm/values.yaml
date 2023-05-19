@@ -7,7 +7,7 @@ frontend:
   name: todo
   labels: 
     app: todo
-  replicaCount: 2
+  replicaCount: 3
   image:
     repository: shw0n0/getting-test
     pullPolicy: IfNotPresent
@@ -24,7 +24,7 @@ backend:
   name: mysql
   labels: 
     app: mysql
-  replicaCount: 2
+  replicaCount: 3
   image:
     repository: mysql
     pullPolicy: IfNotPresent
