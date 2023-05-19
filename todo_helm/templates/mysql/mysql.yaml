@@ -1,34 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: {{ .Values.backend.name}}
 spec:
-  replicas: 1
+  replicas: {{ .Values.backend.replicaCount}}
   selector:
     matchLabels:
-      app: mysql
+      app: {{ .Values.backend.labels.app}}
   template:
     metadata:
       labels:
-        app: mysql
+        app: {{ .Values.backend.labels.app}}
     spec:
       containers:
-      - image: mysql:8.0
-        name: mysql 
+      - image: {{ .Values.backend.image.repository}}:{{ .Values.backend.image.tag}}
+        name: {{ .Values.backend.name}}
+        imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+        volumeMounts:
+          - name: mypd
+            mountPath: /var/lib/mysql
         env:
           - name: MYSQL_ROOT_PASSWORD
             valueFrom: 
               secretKeyRef: 
-                name: mysql-secret
+                name: {{ .Values.secret.name}}
                 key: password
           - name: MYSQL_DATABASE
             valueFrom:
               secretKeyRef: 
-                name: mysql-secret
+                name: {{ .Values.secret.name}}
                 key: mysql_db
         ports:
           - containerPort: 3306
-        volumes:
-          - name: mypd
-            persistentVolumeClaim:
-              claimName: myclaim
+      volumes:
+        - name: mypd
+          persistentVolumeClaim:
+            claimName: myclaim

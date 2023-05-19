@@ -2,43 +2,42 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{ .Values.frontend.labels.app }}
-  name: {{ .Values.frontend.name }} 
+    app: todo  # Chart.yaml: The 'name' scalar.
+  name: todo # Name of the local Helm release.
 spec:
-  replicas: {{ .Values.frontend.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.frontend.labels.app}}
+      app: todo
   template:
     metadata:
       labels:
-        app: {{ .Values.frontend.labels.app }}
+        app: todo
     spec:
       containers:
         # Parses into something like: junktext/getting-started:1.0.4
-      - image: {{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag}}
+      - image: {{ .Values.image.repository }}
         # We only have 1 container in each Pod, so we can just a simple name.
         name: {{ .Chart.Name }}
-        imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
         ports:
-          - containerPort: {{ .Values.frontend.service.targetPort }}
+          - containerPort: {{ .Values.service.port }}
         env:
         - name: MYSQL_HOST 
-          value: {{ .Values.backend.name}}
+          value: mysql
         - name: MYSQL_USER
           valueFrom: 
             secretKeyRef: 
-              name: {{ .Values.secret.name}}
+              name: mysql-secret
               key: username
         - name: MYSQL_PASSWORD
           valueFrom: 
             secretKeyRef: 
-              name: {{ .Values.secret.name}}
+              name: mysql-secret
               key: password
         - name: MYSQL_DB
           valueFrom:
             secretKeyRef: 
-              name: {{ .Values.secret.name}}
+              name: mysql-secret
               key: mysql_db
 
 
