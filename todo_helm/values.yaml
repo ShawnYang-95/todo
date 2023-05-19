@@ -7,7 +7,7 @@ frontend:
   name: todo
   labels: 
     app: todo
-  replicaCount: 1
+  replicaCount: 3
   image:
     repository: shw0n0/getting-test
     pullPolicy: Always
@@ -24,7 +24,7 @@ backend:
   name: mysql
   labels: 
     app: mysql
-  replicaCount: 3
+  replicaCount: 1
   image:
     repository: mysql
     pullPolicy: Always
