@@ -1,0 +1,31 @@
+name: Publish Docker image  
+
+on:   
+  push:
+    branches:  
+      - 'master'
+    tags:       
+      - '*'  
+jobs: 
+
+  push_to_registry:  
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Helm repository
+        uses: actions/checkout@v2
+        with:
+          repository: https://github.com/ShawnYang-95/helm-charts.git
+          ref: master
+          path: todo
+
+      - name: Update image version in value.yaml
+        run: |
+          cd /helm-charts
+          sed -i "s/tag:.*/tag:lates" values.yaml
+          git config --global user.email "1758010923@qq.com"
+          git config --global user.name "ShawnYang-95"
+          git add values.yaml
+          git commit -m "Update image version to latest"
+          git push
