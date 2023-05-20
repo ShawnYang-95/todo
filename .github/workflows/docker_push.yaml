@@ -24,7 +24,5 @@ jobs:
           password: snsdSNSD1028
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2 # docker build & push
-        with:
-          context: .
-          push: true
+        run: |
+          docker build -t getting-test:latest .
