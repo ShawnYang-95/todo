@@ -33,10 +33,10 @@ jobs:
 
       - name: Update image version in value.yaml
         run: |
-          cd helm-charts
-          sed -i "s/tag:.*/tag:lates" values.yaml
+          cd todo
+          sed -i '/frontend:/,/service:/s/\(tag:\s*\).*/\1latestes/' values.yaml
           git config --global user.email "1758010923@qq.com"
           git config --global user.name "ShawnYang-95"
           git add values.yaml
           git commit -m "Update image version to latest"
-          git push
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/ShawnYang-95/helm-charts.git master
