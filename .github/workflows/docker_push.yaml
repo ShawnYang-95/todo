@@ -23,3 +23,20 @@ jobs:
         run: |
           docker build -t shw0n0/getting-test:latest .
           docker push shw0n0/getting-test
+            
+      - name: Checkout Helm repository      
+        uses: actions/checkout@v2
+        with:
+          repository: https://github.com/ShawnYang-95/helm-charts.git
+          ref: master
+          path: todo
+
+      - name: Update image version in value.yaml
+        run: |
+          cd /helm-charts
+          sed -i "s/tag:.*/tag:lates" values.yaml
+          git config --global user.email "1758010923@qq.com"
+          git config --global user.name "ShawnYang-95"
+          git add values.yaml
+          git commit -m "Update image version to latest"
+          git push
