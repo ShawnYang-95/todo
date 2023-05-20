@@ -27,7 +27,7 @@ jobs:
       - name: Checkout Helm repository      
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/ShawnYang-95/helm-charts.git
+          repository: ShawnYang-95/helm-charts
           ref: master
           path: todo
 
