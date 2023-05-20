@@ -21,5 +21,5 @@ jobs:
         run: docker login --username=shw0n0 --password=snsdSNSD1028
       - name: Build and push Docker image
         run: |
-          docker build -t getting-test:latest .
+          docker build -t shw0n0/getting-test:latest .
           docker push shw0n0/getting-test
