@@ -37,5 +37,11 @@ jobs:
           git config --global user.name "ShawnYang-95"
           git config credential.username ShawnYang-95
           git add values.yaml
-          git commit -m "Update image version to latest"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/ShawnYang-95/helm-charts.git master
+      - uses: GuillaumeFalourd/git-commit-push@v1.1
+        with:
+          target_branch: master
+          files: values.yaml
+          remote_repository: https://github.com/ShawnYang-95/helm-charts.git
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+
