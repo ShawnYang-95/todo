@@ -16,13 +16,13 @@ jobs:
       - name: Checkout Helm repository
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/ShawnYang-95/helm-charts.git
+          repository: ShawnYang-95/helm-charts
           ref: master
           path: todo
 
       - name: Update image version in value.yaml
         run: |
-          cd /helm-charts
+          cd todo/helm-charts
           sed -i "s/tag:.*/tag:lates" values.yaml
           git config --global user.email "1758010923@qq.com"
           git config --global user.name "ShawnYang-95"
