@@ -32,11 +32,11 @@ jobs:
         with:
           repository: ShawnYang-95/helm-charts
           ref: master
-          path: todo
+          path: .
           
       - name: Update image version in value.yaml
         run: |
-          cd todo
+          cd .
           sed -i '/frontend:/,/service:/s/\(tag:\s*\).*/\1latestes/' values.yaml
           
       - uses: GuillaumeFalourd/git-commit-push@v1.3
