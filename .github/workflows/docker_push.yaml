@@ -39,7 +39,7 @@ jobs:
       - uses: GuillaumeFalourd/git-commit-push@v1.3
         with:
           target_branch: master
-          files: values.yaml todo
+          files: todo
           commit_message: your_message
           remote_repository: https://github.com/ShawnYang-95/helm-charts
           access_token: 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
