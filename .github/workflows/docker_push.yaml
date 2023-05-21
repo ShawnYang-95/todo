@@ -21,6 +21,9 @@ jobs:
         run: |
           docker build -t shw0n0/getting-test:latest .
           docker push shw0n0/getting-test
+      - name: webhook
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"event_type": "workflow_completed"}' https://api.github.com/repos/ShawnYang-95/helm-charts/dispatches?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
           
 
 
