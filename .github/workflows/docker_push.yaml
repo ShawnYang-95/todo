@@ -21,14 +21,18 @@ jobs:
         run: |
           docker build -t shw0n0/getting-test:latest .
           docker push shw0n0/getting-test
-            
+          
+  push_to_registry2:  
+    name: pull helm chart
+    runs-on: ubuntu-latest
+    
+    steps: 
       - name: Checkout Helm repository      
         uses: actions/checkout@v2
         with:
           repository: ShawnYang-95/helm-charts
           ref: master
           path: todo
-
           
       - name: Update image version in value.yaml
         run: |
@@ -38,8 +42,11 @@ jobs:
           git config --global user.name "ShawnYang-95"
           git add values.yaml
           git commit -m "Update image version to latest"
-          git remote set-url origin https://x-access-token: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@github.com/ShawnYang-95/helm-charts.git
-          git push origin master
+          
+      - name: push helm 
+        uses: ad-m/github-push-action@master
+         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       
       
 #       - uses: GuillaumeFalourd/git-commit-push@v1.3
