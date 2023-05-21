@@ -45,7 +45,6 @@ jobs:
           access_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
           empty: true
-          tags: true
 
 #           git config -l | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
 #           git config --global user.email "1758010923@qq.com"
