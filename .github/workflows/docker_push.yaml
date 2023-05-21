@@ -38,11 +38,7 @@ jobs:
         run: |
           cd todo
           sed -i '/frontend:/,/service:/s/\(tag:\s*\).*/\1latestes/' values.yaml
-          git config --global user.email "1758010923@qq"
-          git config --global user.name "ShawnYang-95"
-          git add values.yaml
-          git commit -m "Update image version to latest"
-           
+          
       - uses: GuillaumeFalourd/git-commit-push@v1.3
         with:
           target_branch: master
