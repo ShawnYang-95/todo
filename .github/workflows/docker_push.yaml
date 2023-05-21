@@ -7,53 +7,21 @@ on:
       - '*'
 jobs: 
 
-#   push_to_registry:  
-#     name: Push Docker image to Docker Hub
-#     runs-on: ubuntu-latest   
+  push_to_registry:  
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest   
 
-#     steps:  
-#       - name: Check out the repo
-#         uses: actions/checkout@v2   
+    steps:  
+      - name: Check out the repo
+        uses: actions/checkout@v2   
 
-#       - name: Log in to Docker Hub
-#         run: docker login --username=shw0n0 --password=snsdSNSD1028
-#       - name: Build and push Docker image
-#         run: |
-#           docker build -t shw0n0/getting-test:latest .
-#           docker push shw0n0/getting-test
-          
-  push_to_registry2:  
-    name: pull helm chart
-    runs-on: ubuntu-latest
-    
-    steps: 
-      - name: Checkout Helm repository      
-        uses: actions/checkout@v2
-        with:
-          repository: ShawnYang-95/helm-charts
-          ref: master
-          path: .
-          
-      - name: Update image version in value.yaml
+      - name: Log in to Docker Hub
+        run: docker login --username=shw0n0 --password=snsdSNSD1028
+      - name: Build and push Docker image
         run: |
-          cd .
-          sed -i '/frontend:/,/service:/s/\(tag:\s*\).*/\1latestes/' values.yaml
-      
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: test1
-          commit_user_name: ShawnYang-95
-          commit_user_email: 1758010923@qq.com
+          docker build -t shw0n0/getting-test:latest .
+          docker push shw0n0/getting-test
           
-#       - uses: GuillaumeFalourd/git-commit-push@v1.3
-#         with:
-#           target_branch: master
-#           files: values.yaml
-#           commit_message: your_message
-#           remote_repository: https://github.com/ShawnYang-95/helm-charts
-#           access_token: ${{ secrets.GITHUB_TOKEN }}
-#           force: true
-#           empty: true
 
 
 
