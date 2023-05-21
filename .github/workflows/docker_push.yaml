@@ -34,8 +34,8 @@ jobs:
         run: |
           cd todo
           sed -i '/frontend:/,/service:/s/\(tag:\s*\).*/\1latestes/' values.yaml
-          git config --global user.email "${{ github.actor }}[bot]@users.noreply.github.com"
-          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "1758010923@qq"
+          git config --global user.name "ShawnYang-95"
           git add values.yaml
           git commit -m "Update image version to latest"
           git remote set-url origin https://x-access-token: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@github.com/ShawnYang-95/helm-charts.git
