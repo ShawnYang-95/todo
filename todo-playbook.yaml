@@ -58,6 +58,5 @@
         dest: /home/ubuntu/
 
     - name: Start Docker Compose
-      shell: docker-compose up -d /home/ubuntu/todo
-      args:
-        chdir: "./app"
+      shell: cd /home/ubuntu && docker-compose up -d /home/ubuntu/todo
+
