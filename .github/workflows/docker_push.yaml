@@ -35,23 +35,23 @@ jobs:
         run: |
           cd todo
           sed -i '/frontend:/,/service:/s/\(tag:\s*\).*/\1latestes/' values.yaml
-          
-      - uses: GuillaumeFalourd/git-commit-push@v1.3
-        with:
-          target_branch: master
-          files: todo/values.yaml
-          commit_message: your_message
-          remote_repository: https://github.com/ShawnYang-95/helm-charts
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
-          empty: true
+          git config --global user.email "${{ github.actor }}[bot]@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git add values.yaml
+          git commit -m "Update image version to latest"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ShawnYang-95/helm-charts.git
+          git push origin master
+      
+      
+      # - uses: GuillaumeFalourd/git-commit-push@v1.3
+#         with:
+#           target_branch: master
+#           files: todo/values.yaml
+#           commit_message: your_message
+#           remote_repository: https://github.com/ShawnYang-95/helm-charts
+#           access_token: ${{ secrets.GITHUB_TOKEN }}
+#           force: true
+#           empty: true
 
-#           git config -l | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
-#           git config --global user.email "1758010923@qq.com"
-#           git config --global user.name "ShawnYang-95"
-#           git add values.yaml
-#           git commit -m "Update image version to latest"
-#           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ShawnYang-95/helm-charts.git
-#           git push origin master
 
 
