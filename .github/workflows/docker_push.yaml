@@ -41,7 +41,7 @@ jobs:
       
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: test
+          commit_message: test1
           commit_user_name: ShawnYang-95
           commit_user_email: 1758010923@qq.com
           
