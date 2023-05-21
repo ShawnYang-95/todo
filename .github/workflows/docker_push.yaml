@@ -33,6 +33,8 @@ jobs:
           repository: ShawnYang-95/helm-charts
           ref: master
           path: .
+          persist-credentials: false
+          fetch-depth: 0
           
       - name: Update image version in value.yaml
         run: |
