@@ -55,8 +55,8 @@
     - name: Clone Todo application repository
       git:
         repo: https://github.com/ShawnYang-95/todo.git
-        dest: /home/ubuntu/
+        dest: /home/ubuntu/todo
 
     - name: Start Docker Compose
-      shell: cd /home/ubuntu && docker-compose up -d /home/ubuntu/todo
+      shell: cd /home/ubuntu/todo && docker-compose up -d
 
