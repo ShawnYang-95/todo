@@ -23,4 +23,4 @@ jobs:
           docker push shw0n0/getting-test
       - name: webhook
         run: |
-          curl -XPOST -u "ShawnYang-95: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" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/ShawnYang-95/helm-charts/dispatches --data '{"event_type": "special_repository"}'
+          curl -XPOST -u "ShawnYang-95:${{secrets.PAT_TOKEN}}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/ShawnYang-95/helm-charts/dispatches --data '{"event_type": "special_repository"}'
